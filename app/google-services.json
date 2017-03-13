@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "98875709166",
+    "firebase_url": "https://ece-day-qr-scanner.firebaseio.com",
+    "project_id": "ece-day-qr-scanner",
+    "storage_bucket": "ece-day-qr-scanner.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:98875709166:android:4b525e4ef7ffcf4d",
+        "android_client_info": {
+          "package_name": "com.varvet.barcodereadersample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "98875709166-divstn98l0dgorj2j8d64r66ago825lt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3z-pDebYwZRrCnQXfFDHUa6KL6sJpekY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
