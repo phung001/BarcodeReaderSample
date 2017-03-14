@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.varvet.barcodereadersample.barcode.BarcodeCaptureActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int BARCODE_READER_REQUEST_CODE = 1;
 
     private TextView mResultTextView;
+    private DatabaseReference mDatabase;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mResultTextView = (TextView) findViewById(R.id.result_textview);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         Button scanBarcodeButton = (Button) findViewById(R.id.scan_barcode_button);
         scanBarcodeButton.setOnClickListener(new View.OnClickListener() {
@@ -34,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, BARCODE_READER_REQUEST_CODE);
             }
         });
+
     }
 
     @Override
@@ -44,7 +50,14 @@ public class MainActivity extends AppCompatActivity {
                     Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
                     Point[] p = barcode.cornerPoints;
                     mResultTextView.setText(barcode.displayValue);
-                } else mResultTextView.setText(R.string.no_barcode_captured);
+
+                }
+                else {
+                    mResultTextView.setText(R.string.no_barcode_captured);
+                    //push qr data to database, increment
+                    DatabaseReference myRef = database.getReference("Email/" + "phung001@ucr-edu");
+                    myRef.setValue(1);
+                }
             } else Log.e(LOG_TAG, String.format(getString(R.string.barcode_error_format),
                     CommonStatusCodes.getStatusCodeString(resultCode)));
         } else super.onActivityResult(requestCode, resultCode, data);
